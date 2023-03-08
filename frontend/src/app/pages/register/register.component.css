@@ -1,0 +1,32 @@
+#container {
+    background-color: blueviolet;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+#container p {
+    display: flex;
+    justify-content: center;
+}
+
+#container form {
+    display: flex;
+    justify-content: center;
+}
+
+mat-form-field {
+    color: aliceblue;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: rgb(255, 255, 255);
+}
+
+mat-label {
+    color: aliceblue;
+}
+
+.container-button {
+    display: flex;
+    justify-content: center;
+}

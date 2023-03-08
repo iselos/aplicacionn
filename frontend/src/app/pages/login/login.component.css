@@ -1,0 +1,38 @@
+#container {
+    width: 100%;
+    background-color: blueviolet;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+#container p {
+    display: flex;
+    justify-content: center;
+}
+
+#container form {
+    display: flex;
+    justify-content: center;
+}
+
+
+table {
+    width: 100%;
+}
+
+mat-form-field {
+    color: #fff;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #fff;
+}
+
+mat-label {
+    color: #fff;
+}
+
+.container-button {
+    display: flex;
+    justify-content: center;
+}

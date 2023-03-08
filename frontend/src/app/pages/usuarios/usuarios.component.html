@@ -1,0 +1,356 @@
+<!-------------------------------------------------------------------------------- OPCION 1 - LISTAR USUARIOS --------------------------------------------------------------------------------->
+<div *ngIf="opcion[0] == '1'">
+    <p style="color: #ffffff; font-weight: bold; font-size: larger; font-family: Georgia, 'Times New Roman', Times, serif;">Tabla de clientes</p>
+    <br>
+    <mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef>Nombre de Usuario</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.username}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="first_name">
+            <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.first_name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="last_name">
+            <mat-header-cell *matHeaderCellDef>Apellido</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.last_name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="groups">
+            <mat-header-cell *matHeaderCellDef>Rol</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.groups}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="last_login">
+            <mat-header-cell *matHeaderCellDef>Ultimo login</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.last_login}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="date_joined">
+            <mat-header-cell *matHeaderCellDef>Fecha registro</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.date_joined | date: 'd/M/y - h:mm:ss a' : 'GMT-3'}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <div class="spacer"></div>
+
+    <div class="container">
+        <button mat-raised-button style="background-color: #F0F8FF; color: #182848;" routerLink="/home">Volver</button>
+    </div>
+</div>
+
+<!-------------------------------------------------------------------------------- OPCION 2 - LISTAR A USUARIO POR ID --------------------------------------------------------------------------------->
+<div *ngIf="opcion[0] == '2'">
+    <!-- FORMULARIO PARA INGRESAR EL ID DEL USUARIO -->
+    <div class="mat-elevation-z8" style="background-color: #6201a3; padding: 30px; border-radius: 12px;">
+        <p class="p-title">Busqueda de Usuario</p>
+        <br>
+        <form [formGroup]="formUser">
+            <table class="example-full-width">
+                <tr>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Id del usuario</mat-label>
+                        <mat-hint>*Por favor ingrese el ID del usuario que busca</mat-hint>
+                        <input matInput formControlName="id" required>
+                    </mat-form-field>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div *ngIf="formUser.invalid; else formValid">
+            <div class="container-button">
+                <button mat-raised-button disabled> Buscar </button>
+            </div>
+        </div>
+        <ng-template #formValid>
+            <div class="container-button-valid">
+                <button mat-raised-button (click)="getUser(formUser.value.id)"> Buscar </button>
+            </div>
+        </ng-template>
+    </div>
+    <div class="spacer"></div>
+    <!-- TABLA CON LOS DATOS DEL USUARIO ENCONTRADO CON EL ID -->
+    <div *ngIf="usuario.length > 0">
+        <p class="p-title" style="color: #F0F8FF;">Usuario</p>
+        <mat-table [dataSource]="usuario" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef>Nombre de Usuario</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.username}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="first_name">
+                <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.first_name}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="last_name">
+                <mat-header-cell *matHeaderCellDef>Apellido</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.last_name}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="groups">
+                <mat-header-cell *matHeaderCellDef>Rol</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.groups}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="last_login">
+                <mat-header-cell *matHeaderCellDef>Ultimo login</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.last_login}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="date_joined">
+                <mat-header-cell *matHeaderCellDef>Fecha registro</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.date_joined | date: 'd/M/y - h:mm:ss a' : 'GMT-3'}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="container">
+        <button mat-raised-button routerLink="/home">Volver</button>
+    </div>
+</div>
+
+<!-------------------------------------------------------------------------------- OPCION 3 - AGREGAR UN USUARIO --------------------------------------------------------------------------------->
+<div *ngIf="opcion[0] == '3'">
+    <div class="example-form mat-elevation-z8" style="background-color: #6201a3; padding: 30px; border-radius: 12px;">
+        <p class="p-title">Agregar un nuevo usuario</p>
+        <br>
+        <form [formGroup]="formUser">
+            <table class="example-full-width" cellspacing="1">
+                <tr>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Nombre se usuario</mat-label>
+                        <input matInput formControlName="username" required>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 40%;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="first_name">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 40%;">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput formControlName="last_name">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 18%;">
+                        <mat-label>Rol</mat-label>
+                        <mat-select formControlName="groups" required>
+                            <mat-option style="color: whitesmoke;" value="cliente">Cliente</mat-option>
+                            <mat-option style="color: whitesmoke;" value="empleado">Empleado</mat-option>
+                            <mat-option style="color: whitesmoke;" value="gerente">Gerente</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 55%;">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" placeholder="pat@example.com">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 44%;">
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 48%;">
+                        <mat-label>Permisos del usuario</mat-label>
+                        <mat-select formControlName="user_permissions" required>
+                            <mat-option style="color: whitesmoke;" value="usuario">Usuario</mat-option>
+                            <mat-option style="color: whitesmoke;" value="invitado">Invitado</mat-option>
+                            <mat-option style="color: whitesmoke;" value="admin">Administrador</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 25%;">
+                        <mat-label>Es staff</mat-label>
+                        <mat-select formControlName="is_staff" [value]="false" required>
+                            <mat-option value="true">Si</mat-option>
+                            <mat-option value="false">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 25%;">
+                        <mat-label>Es super-usuario</mat-label>
+                        <mat-select formControlName="is_root" [value]="false" required>
+                            <mat-option value="true">Si</mat-option>
+                            <mat-option value="false">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div *ngIf="formUser.invalid; else formValid">
+            <div class="container-button">
+                <button mat-raised-button disabled> Guardar </button>
+            </div>
+        </div>
+        <ng-template #formValid>
+            <div class="container-button-valid">
+                <button mat-raised-button (click)="addUser(formUser.value)"> Guardar </button>
+            </div>
+        </ng-template>
+    </div>
+    
+    <div class="spacer"></div>
+
+    <div class="container">
+        <button mat-raised-button routerLink="/home">Volver</button>
+    </div>
+</div>
+
+<!-------------------------------------------------------------------------------- OPCION 4 - ACTUALIZAR A UN USUARIO --------------------------------------------------------------------------------->
+<div *ngIf="opcion[0] == '4'">
+    <div class="example-form mat-elevation-z8" style="background-color: #6201a3; padding: 30px; border-radius: 12px;">
+        <p class="p-title">Actualizar usuario</p>
+        <br>
+        <form [formGroup]="formUser">
+            <table class="example-full-width" cellspacing="1">
+                <tr>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 13%;">
+                        <mat-label>Id del usuario</mat-label>
+                        <input matInput type="number" formControlName="id" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 86%;">
+                        <mat-label>Nombre se usuario</mat-label>
+                        <input matInput formControlName="username">
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 40%;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="first_name">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 40%;">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput formControlName="last_name">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 18%;">
+                        <mat-label>Rol</mat-label>
+                        <mat-select formControlName="groups">
+                            <mat-option style="color: whitesmoke;" value="cliente">Cliente</mat-option>
+                            <mat-option style="color: whitesmoke;" value="empleado">Empleado</mat-option>
+                            <mat-option style="color: whitesmoke;" value="gerente">Gerente</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 55%;">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" placeholder="pat@example.com">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 44%;">
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 48%;">
+                        <mat-label>Permisos del usuario</mat-label>
+                        <mat-select formControlName="user_permissions">
+                            <mat-option style="color: whitesmoke;" value="usuario">Usuario</mat-option>
+                            <mat-option style="color: whitesmoke;" value="invitado">Invitado</mat-option>
+                            <mat-option style="color: whitesmoke;" value="admin">Administrador</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 25%;">
+                        <mat-label>Es staff</mat-label>
+                        <mat-select formControlName="is_staff" [value]="false">
+                            <mat-option value="true">Si</mat-option>
+                            <mat-option value="false">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 25%;">
+                        <mat-label>Es super-usuario</mat-label>
+                        <mat-select formControlName="is_root" [value]="false">
+                            <mat-option value="true">Si</mat-option>
+                            <mat-option value="false">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div *ngIf="formUser.invalid; else formValid">
+            <div class="container-button">
+                <button mat-raised-button disabled>Actualizar</button>
+            </div>
+        </div>
+        <ng-template #formValid>
+            <div class="container-button-valid">
+                <button mat-raised-button routerLink="/home" (click)="updateUser(formUser.value.id, formUser.value)">Actualizar</button>
+            </div>
+        </ng-template>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="container">
+        <button mat-raised-button routerLink="/home">Volver</button>
+    </div>
+</div>
+
+<!-------------------------------------------------------------------------------- OPCION 5 - ELIMINAR A UN USUARIO ----------------------------------------------------------------------------------->
+<div *ngIf="opcion[0] == '5'">
+    <div class="example-form mat-elevation-z8" style="background-color: #6201a3; padding: 30px; border-radius: 12px;">
+        <p class="p-title">Eliminar un Usuario</p>
+        <form [formGroup]="formUser">
+            <table class="example-full-width" cellspacing="1">
+                <tr>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Id del usuario</mat-label>
+                        <mat-hint>*Por favor ingrese el ID del usuario que desea eliminar</mat-hint>
+                        <input matInput formControlName="id" required>
+                    </mat-form-field>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div *ngIf="formUser.invalid; else formValid">
+            <button mat-raised-button style="width: 100%; background-color: #fa6400; color: rgba(255, 255, 255, 0.37);" disabled>Eliminar</button>
+        </div>
+        <ng-template #formValid>
+            <button mat-raised-button style="width: 100%; background-color: #fa6400; color: #fff;" routerLink="/home" (click)="deleteUser(formUser.value.id)">Eliminar</button>
+        </ng-template>
+    </div>
+
+    <div class="spacer"></div>
+    
+    <div class="container">
+        <button mat-raised-button routerLink="/home">Volver</button>
+    </div>
+</div>

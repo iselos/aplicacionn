@@ -1,0 +1,30 @@
+<div class="mat-elevation-z8" id="container">
+    <p style="color: #fff;; font-size: x-large;">Bienvenido!!</p>
+    <p style="color: #fff">Ingrese sus datos para continuar.</p>
+    <br>
+    <form [formGroup]="formLogin">
+        <table>
+            <tr>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Nombre se usuario</mat-label>
+                    <input matInput formControlName="username">
+                </mat-form-field>
+            </tr>
+            <tr>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <div class="container-button">
+        <button [disabled]="!formLogin.valid" mat-raised-button style="background-color: black; width: 50%;" (click)="login(formLogin.value.username, formLogin.value.password)">Ingresar</button>
+        <button mat-button style="color: #fff" routerLink="/register">Registrarse</button>
+    </div>
+</div>

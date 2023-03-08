@@ -1,0 +1,75 @@
+<div class="mat-elevation-z8" id="container">
+    <p style="color: aliceblue; font-size: x-large;">Registro de cuenta</p>
+    <p style="color: aliceblue">Por favor complete los siguientes datos.</p>
+    <br>
+    <form [formGroup]="formRegister">
+        <table>
+            <tr>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Nombre se usuario</mat-label>
+                    <input matInput formControlName="username">
+                </mat-form-field>
+            </tr>
+            <tr>
+                <mat-form-field appearance="outline" style="padding-right: 8px; width: 40%;">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="first_name">
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding-right: 8px; width: 40%;">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput formControlName="last_name">
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="width: 17%;">
+                    <mat-label>Rol</mat-label>
+                    <mat-select formControlName="groups">
+                        <mat-option style="color: whitesmoke;" value="cliente">Cliente</mat-option>
+                        <mat-option style="color: whitesmoke;" value="empleado">Empleado</mat-option>
+                        <mat-option style="color: whitesmoke;" value="gerente">Gerente</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </tr>
+            <tr>
+                <mat-form-field appearance="outline" style="padding-right: 8px; width: 53%;">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput formControlName="email" placeholder="pat@example.com">
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="width: 45%;">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </tr>
+            <tr>
+                <mat-form-field appearance="outline" style="padding-right: 8px; width: 47%;">
+                    <mat-label>Permisos del usuario</mat-label>
+                    <mat-select formControlName="user_permissions">
+                        <mat-option style="color: whitesmoke;" value="usuario">Usuario</mat-option>
+                        <mat-option style="color: whitesmoke;" value="invitado">Invitado</mat-option>
+                        <mat-option style="color: whitesmoke;" value="admin">Administrador</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding-right: 8px; width: 25%;">
+                    <mat-label>Es staff</mat-label>
+                    <mat-select formControlName="is_staff" [value]="false">
+                        <mat-option style="color: whitesmoke;" value="true">Si</mat-option>
+                        <mat-option style="color: whitesmoke;" value="false">No</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="width: 25%;">
+                    <mat-label>Es super-usuario</mat-label>
+                    <mat-select formControlName="is_root" [value]="false">
+                        <mat-option style="color: whitesmoke;" value="true">Si</mat-option>
+                        <mat-option style="color: whitesmoke;" value="false">No</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <div class="container-button">
+        <button mat-raised-button style="color: black; background-color: lightskyblue; width: 35%;" [disabled]="formRegister.invalid" (click)="register(formRegister.value)">Crear usuario</button>
+        <button mat-button style="margin-left:5px ;color: black; background-color: lightskyblue;" routerLink="/">Ya tengo cuenta</button>
+    </div>
+</div>

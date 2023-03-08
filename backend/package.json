@@ -1,0 +1,35 @@
+{
+  "name": "api_banco",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "babel-node": "babel-node --presets=@babel/preset-env",
+    "dev": "nodemon --exec npm run babel-node src/index.js"
+  },
+  "author": "Isel",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
+    "promise-mysql": "^5.2.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/node": "^7.19.1",
+    "@babel/preset-env": "^7.19.4",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/morgan": "^1.9.3",
+    "@types/uuid": "^8.3.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  }
+}

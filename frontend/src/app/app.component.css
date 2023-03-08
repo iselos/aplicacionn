@@ -1,0 +1,41 @@
+.toolbar {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1%;
+}
+
+.logo {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-left: 10%;
+}
+
+.logo span {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.github-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-right: 10%;
+}
+
+#github-buttons {
+    background-image: linear-gradient(to right, #ECE9E6 0%, #ECE9E6  51%, #FFFFFF  100%)
+}
+
+.spacer {
+    height: 8%;
+}
+
+.content {
+    padding: 0 10% 0 10%;
+}

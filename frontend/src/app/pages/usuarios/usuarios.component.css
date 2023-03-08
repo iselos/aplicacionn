@@ -1,0 +1,41 @@
+table {
+    width: 100%;
+}
+
+mat-table {
+    background-color: #6201a3;
+}
+
+.spacer {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.p-title {
+    color: #ffffff; 
+    font-weight: bold; 
+    font-size: larger; 
+    font-family: Georgia, 'Times New Roman', "Times, serif";
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container button {
+    background-color: #fff0f0;
+    color: black;
+}
+
+.container-button button {
+    width: 100%;
+    background-color: #fa6400;
+    color: rgb(255, 255, 255);
+}
+
+.container-button-valid button {
+    width: 100%;
+    background-color: #fa6400;
+    color: #fff;
+}

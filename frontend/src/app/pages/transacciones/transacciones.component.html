@@ -1,0 +1,173 @@
+<!-------------------------------------------------------------------------------- OPCION 1 - LISTAR TRASANCCIONES --------------------------------------------------------------------------------->
+<div *ngIf="opcion[0] == '1'">
+    <p style="color: #ffffff; font-weight: bold; font-size: larger; font-family: Georgia, 'Times New Roman', Times, serif;">Lista de Depositos</p>
+    <br>
+    <mat-table [dataSource]="transacciones" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="origen">
+            <mat-header-cell *matHeaderCellDef>Origen</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.origen}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="destino">
+            <mat-header-cell *matHeaderCellDef>Destino</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.destino}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cantidad">
+            <mat-header-cell *matHeaderCellDef>Cantidad</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.cantidad | currency}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha_realizada">
+            <mat-header-cell *matHeaderCellDef>Fecha Realizada</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.fecha_realizada | date: 'd/M/y - h:mm:ss a' : 'GMT-3'}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <div class="spacer"></div>
+
+    <div class="container">
+        <button mat-raised-button routerLink="/home">Volver</button>
+    </div>
+</div>
+
+<!-------------------------------------------------------------------------------- OPCION 2 - NUEVA TRANSACCIÓN ------------------------------------------------------------------------------------>
+<div *ngIf="opcion[0] == '2'">
+    <div class="example-form mat-elevation-z8" style="background-color: #6201a3; padding: 30px; border-radius: 12px;">
+        <p class="p-title">Nueva Transacción</p>
+        <br>
+        <form [formGroup]="formTransaccion">
+            <table class="example-full-width" cellspacing="1">
+                <tr>
+                    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px;">
+                        <mat-label>Origén de la Trasacción</mat-label>
+                        <mat-select formControlName="origen" required>
+                            <mat-option [value]="userTransaction[0]?.username"
+                                style="color: whitesmoke;">Cuenta: {{userTransaction[0]?.username}} - Saldo Disp.: {{userTransaction[0]?.saldo | currency}} </mat-option>
+                        </mat-select>
+                        <mat-hint>*Selecione la cuenta de origén</mat-hint>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px;">
+                        <mat-label>Destino de la Trasacción</mat-label>
+                        <mat-select formControlName="destino" required>
+                            <mat-option *ngFor="let user of usersTransaction" [value]="user.username"
+                                style="color: whitesmoke;">{{user.username}}</mat-option>
+                        </mat-select>
+                        <mat-hint>*Seleccione la cuenta de destino</mat-hint>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field appearance="outline" style="padding-right: 8px; width: 50%;">
+                        <mat-label>Cantidad</mat-label>
+                        <input matInput type="number" min="1" max="{{userTransaction[0]?.saldo}}" formControlName="cantidad" placeholder="$300" required>
+                        <mat-hint>*Debe ser una cantidad mayor a 0</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 49%;">
+                        <mat-label>¿Mismo Titular?</mat-label>
+                        <mat-select>
+                            <mat-option value="true" style="color: whitesmoke;">Si</mat-option>
+                            <mat-option value="false" style="color: whitesmoke;">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div *ngIf="formTransaccion.invalid; else formValid">
+            <div class="container-button">
+                <button mat-raised-button disabled>Realizar Trasacción</button>
+            </div>
+        </div>
+        <ng-template #formValid>
+            <div class="container-button-valid">
+                <button mat-raised-button (click)="nuevaTrasaccion(formTransaccion.value)" routerLink="/home"> Realizar Trasacción </button>
+            </div>
+        </ng-template>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="container">
+        <button mat-raised-button routerLink="/home">Volver</button>
+    </div>
+</div>
+
+<!-------------------------------------------------------------------------------- OPCION 3 - BUSCAR TRANSACCIÓN ----------------------------------------------------------------------------------->
+<div *ngIf="opcion[0] == '3'">
+    <div class="example-form mat-elevation-z8" style="background-color: #6201a3; padding: 30px; border-radius: 12px;">
+        <p class="p-title">Buscar Trasacción</p>
+        <br>
+        <form [formGroup]="formTransaccion">
+            <table class="example-full-width" cellspacing="1">
+                <tr>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Id de transacción</mat-label>
+                        <mat-hint>*Por favor ingrese el ID de la transacción que busca</mat-hint>
+                        <input matInput formControlName="id" required>
+                    </mat-form-field>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div *ngIf="formTransaccion.invalid; else formValid">
+            <div class="container-button">
+                <button mat-raised-button disabled> Buscar </button>
+            </div>
+        </div>
+        <ng-template #formValid>
+            <div class="container-button-valid">
+                <button mat-raised-button (click)="getTransaccionId(formTransaccion.value.id)">Buscar</button>
+            </div>
+        </ng-template>
+    </div>
+
+    <br>
+    <div *ngIf="transacciones.length >= 1">
+        <p style="font-weight: bold;">Transacción</p>
+        <mat-table [dataSource]="transacciones" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="origen">
+                <mat-header-cell *matHeaderCellDef>Origen</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.origen}}</mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="destino">
+                <mat-header-cell *matHeaderCellDef>Destino</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.destino}}</mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="cantidad">
+                <mat-header-cell *matHeaderCellDef>Cantidad</mat-header-cell>
+                <mat-cell *matCellDef="let row">$ {{row.cantidad}}</mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="fecha_realizada">
+                <mat-header-cell *matHeaderCellDef>Fecha Realizada</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.fecha_realizada | date: 'd/M/y - h:mm:ss a' : 'GMT-3'}}</mat-cell>
+            </ng-container>
+    
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="container">
+        <button mat-raised-button routerLink="/home">Volver</button>
+    </div>
+</div>
