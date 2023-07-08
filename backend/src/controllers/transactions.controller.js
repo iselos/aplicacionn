@@ -22,6 +22,7 @@ const getTransactions = async (_req = request, res = response) => {
 
 // GET TRANSACTION ID -------------------------------------------------------------------------------------------------------------------------
 const getTransactionId = async (req = request, res = response) => {
+    
     const { id } = req.params;
 
     try {
@@ -69,4 +70,5 @@ const newTransaction = async(req = request, res = response) => {
     }
 }
 
-module.exports = { getTransactions, getTransactionId, newTransaction }
+
+module.exports = { getTransactions, getTransactionId, newTransaction  }

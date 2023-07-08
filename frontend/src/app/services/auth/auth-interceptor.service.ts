@@ -25,3 +25,10 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
 }
+
+//req:lo que se solicita.
+//observable:Resuelve un evento.
+//handle: deja pasar por el interceptor
+//module: interceptor
+//////////////////////////////////
+//headers

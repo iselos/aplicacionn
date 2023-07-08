@@ -1,6 +1,12 @@
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
 #container {
     width: 100%;
-    background-color: blueviolet;
     border-radius: 10px;
     padding: 30px;
 }
@@ -8,11 +14,13 @@
 #container p {
     display: flex;
     justify-content: center;
+    
 }
 
 #container form {
     display: flex;
     justify-content: center;
+    
 }
 
 
@@ -30,6 +38,7 @@ mat-form-field {
 
 mat-label {
     color: #fff;
+    
 }
 
 .container-button {

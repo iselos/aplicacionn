@@ -24,11 +24,11 @@ const getAccounts = async (_req = request, res = response) => {
 
 // GET ACCOUNT ID -------------------------------------------------------------------------------------------------------------------------
 const getAccountId = async (req = request, res = response) => {
-    const { id, username } = req.params;
+    const { id } = req.params;
 
     try {
         const connection = await getConnection();
-        const result = await connection.query('SELECT * FROM accounts WHERE id = ? OR username = ?', [id, username]);
+        const result = await connection.query('SELECT * FROM accounts WHERE id = ? ', [id]);
 
         return res.status(200).json({
             ok: true,

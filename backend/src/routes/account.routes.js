@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/', getAccounts);
 
-router.get('/:id:username', getAccountId);
+router.get('/:id:', getAccountId);
 
 router.post('/add', newAccount);
 

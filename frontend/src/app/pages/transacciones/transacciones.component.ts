@@ -105,7 +105,7 @@ export class TransaccionesComponent implements OnInit {
         title: 'comprobante.pdf'
       },
       content: [
-        { text: "Banco BNPM", style: "header" },
+        { text: "Banco BNIC", style: "header" },
         { text: "Comprobante de Transacción", style: "subheader" },
         {
           columns: [
