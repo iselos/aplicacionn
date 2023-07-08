@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* SON ESTILOS ES DECIR LOS COLORES Y DIMENSIONES */
 
 html,
 body { 
@@ -6,9 +6,9 @@ body {
     margin: 0;
 }
 
-/* SNACK BARS COLORS  */
+/* BARRA DE MENU  */
 .back-color {
-    background-color: #002D62;
+    background-color: #1acd1a;
     color: #fff;
 }
 

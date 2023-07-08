@@ -6,52 +6,41 @@
 
 <div class="spacer"></div>
 
+
+
 <img src="./../../../assets/images.jpg" alt="imagen banco" width="100%" height="800px">
 
-<div class="spacer"></div>
+<div class="btn">
+    <button>
+        <span class="text" routerLink="/usuarios" [queryParams]="{op: '1'}">Lista Usuario</span>
+    </button>
+    <button>
+        <span class="text" routerLink="/usuarios" [queryParams]="{op: '3'}">Agregar Usuario</span>
+    </button>
+    <button>
+        <span class="text" routerLink="/usuarios" [queryParams]="{op: '4'}">Actualizar Usuario</span> 
+    </button>
+    <button>
+        <span class="text" routerLink="/usuarios" [queryParams]="{op: '5'}">Eliminar Usuario</span>
+    </button>
+</div>
 
-<div class="container">
-    <div class="item-a">
-        <mat-card class="mat-elevation-z8">
-            <mat-card-title>Usuarios</mat-card-title>
-            <mat-card-actions align="start">
-                <div class="container-buttons-card">
-                    <button mat-flat-button style="color: #000;" routerLink="/usuarios" [queryParams]="{op: '1'}">Lista de usuarios</button>
-                    <button mat-flat-button style="color: #000;" routerLink="/usuarios" [queryParams]="{op: '2'}">Buscar usuario</button>
-                    <button mat-flat-button style="color: #000;" routerLink="/usuarios" [queryParams]="{op: '3'}">Agregar usuario</button>
-                    <button mat-flat-button style="color: #000;" routerLink="/usuarios" [queryParams]="{op: '4'}">Actualizar datos del usuario</button>
-                    <button mat-flat-button style="color: #000;" routerLink="/usuarios" [queryParams]="{op: '5'}">Eliminar usuario</button>
-                </div>
-            </mat-card-actions>
-        </mat-card>
-    </div>
+<img src="./../../../assets/descarga.jpg" alt="imagen banco" width="100%" height="600px">
 
-    <img src="./../../../assets/descarga.jpg" alt="imagen banco" width="100%" height="600px">
-    
-    <div class="item-c">
-        <mat-card class="mat-elevation-z8">
-            <mat-card-title>Transacciones</mat-card-title>
-            <mat-card-actions align="start">
-                <div class="container-buttons-card">
-                    <button mat-flat-button style="color: #000;" routerLink="/transacciones" [queryParams]="{op: '1'}">Lista de transacciones</button>
-                    <button mat-flat-button style="color: #000;" routerLink="/transacciones" [queryParams]="{op: '2'}">Nueva transacción</button>
-                    <button mat-flat-button style="color: #000;" routerLink="/transacciones" [queryParams]="{op: '3'}">Buscar transacción</button>
-                </div>
-            </mat-card-actions>
-        </mat-card>
-    </div>
-
-    <img src="./../../../assets/gracias.jpg" alt="imagen banco" width="100%" height="600px">
-
-    <div class="item-d">
-        <mat-card class="mat-elevation-z8">
-            <mat-card-title>Salir</mat-card-title>
-            <mat-card-actions align="start">
-                <div class="container-buttons-card">
-                    <button mat-flat-button style="color: #000;" routerLink="/">Cerrar Sesión</button>
-                </div>
-            </mat-card-actions>
-        </mat-card>
-    </div>
-
+<div class="btn">
+    <button>
+        <span class="text" routerLink="/transacciones" [queryParams]="{op: '1'}">Lista Transacciones</span>
+    </button>
+    <button>
+        <span class="text" routerLink="/transacciones" [queryParams]="{op: '2'}">Nueva Transaccion</span>
+    </button>
+    <button>
+        <span class="text" routerLink="/transacciones" [queryParams]="{op: '3'}">Buscar Transaccion</span> 
+    </button>
+</div>
+<img src="./../../../assets/gracias.jpg">
+<div class="btn2">
+    <button>
+        <span class="text" routerLink="/">CERRAR SESION</span>
+    </button>
 </div>

@@ -2,7 +2,7 @@
     width: 100%;
     height: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding-top: 1%;
 }
@@ -15,9 +15,9 @@
 }
 
 .logo span {
-    font-size: 20px;
+    font-size: 55px;
     font-weight: bold;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Blaka', cursive;
 }
 
 .github-buttons {
@@ -33,9 +33,9 @@
 }
 
 .spacer {
-    height: 8%;
+    height: 16%;
 }
 
 .content {
-    padding: 0 10% 0 10%;
+    padding: 0 16% 0 16%;
 }
