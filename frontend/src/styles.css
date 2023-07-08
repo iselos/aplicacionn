@@ -8,11 +8,11 @@ body {
 
 /* BARRA DE MENU  */
 .back-color {
-    background-color: #1acd1a;
-    color: #fff;
+    background-color: white;
+    color: black;
 }
 
 .back-color-err {
-    background-color: #e90f0f;
+    background-color: red;
     color: #F0F8FF;
 }
